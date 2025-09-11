@@ -31,6 +31,8 @@ def get_email():
 
 
 def create_contact():
+
+
     """
     Get user input for a new contact. 
     Validates users information using helper functions. 
@@ -60,3 +62,19 @@ def create_contact():
     with open("contacts.json", "w") as f:
         json.dump(contacts, f, indent=4)
 
+def show_menu():
+    print("""
+=====================
+   Contact List Menu
+=====================
+1. View Contact List
+2. Add Contact
+3. Search Contact List
+4. Update Contact Info
+5. Remove Contact
+6. Exit
+""")
+
+    
+
+    
