@@ -106,7 +106,7 @@ def search_contact_list():
     with open("contacts.json", "r") as f:
         contact_list = json.load(f) 
 
-    
+    # searches for matching Name values
     if user_choice == 1:
         while True:
             name_search = input("What name would you like to search for? ")
@@ -121,12 +121,51 @@ def search_contact_list():
 
             if matches:             # returns True if Matches list is not empty, else returns False
                 sorted_matches = sorted(matches, keys=lambda x: x["Name"])              # sorts matches by Name
-                print(tabulate(sorted_matches, keys="keys", tablefmt="fancy-grid"))     #prints table of sorted matches
+                print(tabulate(sorted_matches, headers="keys", tablefmt="fancy-grid"))  # prints table of sorted matches
                 break   # breaks the While loop when matches is true (is not empty list)
             else:
                 print("That name is not in the list, please enter a valid name")
 
-            
+    # Searches for matching Phone values
+    if user_choice == 2:
+        while True:
+            phone_search = get_phone_num()
+
+            # list of potential matches
+            matches = []
+
+            # Seaches the contact list for any Phone matches, if they match, append to matches
+            for i in contact_list:
+                if i["Phone"] == phone_search:
+                    matches.append(i)
+
+            if matches: # returns True if matches list is not empty, else returns False
+                sorted_matches = sorted(matches, key=lambda x: x["Name"])               # sorts matches by Name
+                print(tabulate(sorted_matches, headers="keys", tablefmt="fancy-grid"))  # prints table of sorted matches
+                break
+            else:
+                print("That number is not in the contact list, please enter a valid phone number")
+
+    # Seaches for matching Email values
+    if user_choice == 3:
+        while True:
+            email_search = get_email()
+
+            # list of potential matches
+            matches = []
+
+            # seaches contact list for any email matches, if they match, append to matches
+            for i in contact_list:
+                if i["Email"] == email_search:
+                    matches.append(i)
+
+            if matches: # returns True if matches list is not empty, else returns False
+                sorted_matches = sorted(matches, key=lambda x: x["Name"])               # sorts matches by Name
+                print(tabulate(sorted_matches, headers="keys", tablefmt="fancy-grid"))  # prints table of sorted matches
+                break
+            else:
+                print("That email is not in the contact list, please enter a valid email")
+    
 
 def show_menu():
     """Prints Menu of User Options"""
@@ -142,7 +181,7 @@ def show_menu():
 6. Exit
 """)
     
-search_contact_list()
+
     
 
     
