@@ -7,6 +7,7 @@ This project requires Python 3.x and the following libraries:
 
 - [phonenumbers](https://pypi.org/project/phonenumbers/)
 - [validate-email-address](https://pypi.org/project/validate-email-address/)
+- [tabulate](https://pypi.org/project/tabulate/)
 
 You can install them with:
 

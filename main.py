@@ -1,6 +1,8 @@
 import json
 import phonenumbers
 from validate_email_address import validate_email
+from tabulate import tabulate
+
 
 def get_phone_num():
     """Helper function to get user phone number, validate it, and return in a US phone number format"""
