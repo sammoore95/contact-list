@@ -89,6 +89,45 @@ def show_contact_list():
         print(contact_table)
 
 
+def search_contact_list():
+    while True:
+        print("""What key would you like to search the contact list by?
+            1. Name
+            2. Phone
+            3. Email""")
+        
+        user_choice = get_int("Please enter selection (int) ")
+        
+        if user_choice <= 3:
+            break
+        else:
+            print("Please choose a valid number")
+    
+    with open("contacts.json", "r") as f:
+        contact_list = json.load(f) 
+
+    
+    if user_choice == 1:
+        while True:
+            name_search = input("What name would you like to search for? ")
+            
+            # List of potential matches
+            matches = []
+
+            # searches the contact list for any Name matches, if they match, append to matches
+            for i in contact_list:
+                if i["Name"] == name_search:
+                    matches.append(i)
+
+            if matches:             # returns True if Matches list is not empty, else returns False
+                sorted_matches = sorted(matches, keys=lambda x: x["Name"])              # sorts matches by Name
+                print(tabulate(sorted_matches, keys="keys", tablefmt="fancy-grid"))     #prints table of sorted matches
+                break   # breaks the While loop when matches is true (is not empty list)
+            else:
+                print("That name is not in the list, please enter a valid name")
+
+            
+
 def show_menu():
     """Prints Menu of User Options"""
     print("""
@@ -102,6 +141,8 @@ def show_menu():
 5. Remove Contact
 6. Exit
 """)
+    
+search_contact_list()
     
 
     
