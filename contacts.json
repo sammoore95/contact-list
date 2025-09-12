@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "Mark Moore",
+        "Phone": "(260) 271-9805",
+        "email": "markmoore@gmail.com",
+        "notes": "My Dad"
+    },
+    {
+        "Name": "Karen Moore",
+        "Phone": "(260) 418-2038",
+        "email": "karenmoore@gmail.com",
+        "notes": "My Mom"
+    },
+    {
+        "Name": "Sam More",
+        "Phone": "(260) 580-5239",
+        "email": "samhmoore95@gmail.com",
+        "notes": "Me"
+    }
+]

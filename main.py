@@ -30,37 +30,51 @@ def get_email():
             print("Please enter a valid email ")
 
 
+def get_int(promt):
+    """Helper function to get valid integer input from user"""
+    while True:
+        try:
+            num_of_items = int(input(promt))
+            if num_of_items > 0:
+                break
+            else:
+                print("Please enter a valid integer greater than 0")
+        except ValueError:
+            print("Please enter a valid integer")
+    return(num_of_items)
+
+
 def create_contact():
-
-
     """
     Get user input for a new contact. 
     Validates users information using helper functions. 
     Writes validated inputs as a JSON string to contacts.json
     """
-    
-    print("Creating new contact:")
-    name = input("Enter Name: ")
-    phone = get_phone_num() # validated helper
-    email = get_email()     # validated helper
-    notes = input("Enter notes: ")
+    num_of_items = get_int("How many contacts would you like to add?")
 
-    # store contact info as a dictionary
-    contact = {"Name":name, "Phone":phone, "email":email, "notes":notes}
+    for i in range(num_of_items):
+        print("Creating new contact:")
+        name = input("Enter Name: ")
+        phone = get_phone_num() # validated helper
+        email = get_email()     # validated helper
+        notes = input("Enter notes: ")
 
-    # Try to load existing contacts (or create empty list if file is missing/invalid)
-    try:
-        with open("contacts.json", "r") as f:
-            contacts = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        contacts = []
+        # store contact info as a dictionary
+        contact = {"Name":name, "Phone":phone, "email":email, "notes":notes}
 
-    # Append new contact to the list
-    contacts.append(contact)
+        # Try to load existing contacts (or create empty list if file is missing/invalid)
+        try:
+            with open("contacts.json", "r") as f:
+                contacts = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            contacts = []
 
-    # Write the updated list back to the file
-    with open("contacts.json", "w") as f:
-        json.dump(contacts, f, indent=4)
+        # Append new contact to the list
+        contacts.append(contact)
+
+        # Write the updated list back to the file
+        with open("contacts.json", "w") as f:
+            json.dump(contacts, f, indent=4)
 
 def show_menu():
     print("""
@@ -74,6 +88,8 @@ def show_menu():
 5. Remove Contact
 6. Exit
 """)
+    
+create_contact()
 
     
 
