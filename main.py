@@ -52,6 +52,7 @@ def create_contact():
     """
     num_of_items = get_int("How many contacts would you like to add?")
 
+    # Adds n number of contacts to the contact list
     for i in range(num_of_items):
         print("Creating new contact:")
         name = input("Enter Name: ")
@@ -77,6 +78,7 @@ def create_contact():
             json.dump(contacts, f, indent=4)
 
 def show_menu():
+    """Prints Menu of User Options"""
     print("""
 =====================
    Contact List Menu
@@ -89,7 +91,7 @@ def show_menu():
 6. Exit
 """)
     
-create_contact()
+
 
     
 
