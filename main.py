@@ -63,7 +63,7 @@ def create_contact():
         notes = input("Enter notes: ")
 
         # store contact info as a dictionary
-        contact = {"Name":name, "Phone":phone, "email":email, "notes":notes}
+        contact = {"Name":name, "Phone":phone, "Email":email, "Notes":notes}
 
         # Try to load existing contacts (or create empty list if file is missing/invalid)
         try:
@@ -79,6 +79,16 @@ def create_contact():
         with open("contacts.json", "w") as f:
             json.dump(contacts, f, indent=4)
 
+
+def show_contact_list():
+    """Loads contacts from JSON file, sorts them alphabetically by the name, then prints the contacts in a table"""
+    with open("contacts.json", "r") as f:
+        contact_list = json.load(f)
+        sorted_contact_list = sorted(contact_list, key=lambda x: x["Name"].lower())     # sorts the list of dicts by the Name key
+        contact_table = tabulate(sorted_contact_list, headers="keys", tablefmt="fancy-grid")
+        print(contact_table)
+
+
 def show_menu():
     """Prints Menu of User Options"""
     print("""
@@ -92,6 +102,8 @@ def show_menu():
 5. Remove Contact
 6. Exit
 """)
+    
+
     
 
 
