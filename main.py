@@ -120,7 +120,7 @@ def search_contact_list():
                     matches.append(i)
 
             if matches:             # returns True if Matches list is not empty, else returns False
-                sorted_matches = sorted(matches, keys=lambda x: x["Name"])              # sorts matches by Name
+                sorted_matches = sorted(matches, key=lambda x: x["Name"])              # sorts matches by Name
                 print(tabulate(sorted_matches, headers="keys", tablefmt="fancy-grid"))  # prints table of sorted matches
                 break   # breaks the While loop when matches is true (is not empty list)
             else:
@@ -391,7 +391,7 @@ def show_menu():
     """Prints Menu of User Options"""
     print("""
 =====================
-   Contact List Menu
+  Contact List Menu
 =====================
 1. View Contact List
 2. Add Contact
@@ -400,6 +400,38 @@ def show_menu():
 5. Remove Contact
 6. Exit
 """)
+    
+def contacts():
+    """Allows users to view, create, search, update, and remove contacts"""
+
+    while True:
+        show_menu()
+
+        # users helper function to validate the user is entering an int
+        user_choice = get_int("What would you like to do? ")
+
+        if user_choice < 7:
+            if user_choice == 1:
+                show_contact_list()
+            elif user_choice == 2:
+                create_contact()
+            elif user_choice == 3:
+                search_contact_list()
+            elif user_choice == 4:
+                update_contact()
+            elif user_choice == 5:
+                delete_contact()
+            elif user_choice == 6:
+                print("Exiting contacts")
+                break
+        else:
+            print("Please enter a valid option")
+    
+
+def main():
+    contacts()
+
+main()
     
 
     

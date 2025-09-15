@@ -6,15 +6,27 @@
         "Notes": "My Dad"
     },
     {
-        "Name": "Karen Moore",
-        "Phone": "(260) 418-2038",
-        "Email": "karenmoore@gmail.com",
-        "Notes": "My Mom"
-    },
-    {
         "Name": "Sam Moore",
         "Phone": "(260) 580-5239",
         "Email": "samhmoore95@gmail.com",
         "Notes": "Me"
+    },
+    {
+        "Name": "Abby Moore",
+        "Phone": "(260) 440-1660",
+        "Email": "abmoe@gmail.com",
+        "Notes": "My sister, just married"
+    },
+    {
+        "Name": "Joe Moore",
+        "Phone": "(260) 431-8386",
+        "Email": "joe@gmail.com",
+        "Notes": "Brother"
+    },
+    {
+        "Name": "Karen Moore",
+        "Phone": "(260) 418-2038",
+        "Email": "gusandus@gmail.com",
+        "Notes": "My mom"
     }
 ]
