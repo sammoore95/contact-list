@@ -168,6 +168,9 @@ def search_contact_list():
     
 
 def update_contact():
+
+    show_contact_list()
+
     while True:
         contact_choice = input("What contact would you like to update? ")
 
@@ -186,10 +189,149 @@ def update_contact():
         else:
             print("That name is not in the conact list, please select a valid name ")
 
-    
-
+    # checks for valid update option selection
+    while True:
+        print("""What contact field would you like to update?
+              1. Name
+              2. Phone
+              3. Email
+              4. Notes""")
         
+        user_selection = get_int("Please select update option (int) ")
 
+        if user_selection < 5:  # ensures user selection is under 5, get_int(promt) ensures the user enters a positive int
+            break
+        else:
+            print("That option is not in the update contact options list, please enter a valid number")
+
+    # updates matches list with new Name value
+    if user_selection == 1:
+        update_name = input("What would you like to update the contact's name to? ")
+
+        # updates the Name field in the matches list to the new name
+        for i in matches:
+            i["Name"] = update_name
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+
+        # used to construct the new contact list, that will overwrite the contacts.json file
+        new_contact_list = []
+
+        # creates the new contact list with name updates
+        for i in contact_list:
+            if i["Name"] == contact_choice:     # adds matches list to new_contact_list for updated name
+                new_contact_list.extend(matches)
+            else:
+                new_contact_list.append(i)      # adds current contact dictionary to new_contact_list
+
+        # overwrites contacts.json file with the new contact list containing the updated name
+        with open("contacts.json", "w") as f:   
+            json.dump(new_contact_list, f, indent=4)
+
+        # confirms contact list was updated, and prints updated contact list
+        print("Contact list updated!")
+        show_contact_list()
+
+    # updates the matches list with a new Phone value
+    if user_selection == 2:
+        update_phone = get_phone_num()
+
+        # updates the Phone field in the matches list to the new phone number
+        for i in matches:
+            i["Phone"] = update_phone
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+
+        # used to construct the new contact list, that will overwrite the contacts.json file
+        new_contact_list = []
+
+        # creates the new contact list with the phone updates
+        for i in contact_list:
+            if i["Name"] == contact_choice:
+                new_contact_list.extend(matches)
+            else:
+                new_contact_list.append(i)
+
+        # overwrites contacts.json file with the new contact list containing the updated phone number
+        with open("contacts.json", "w") as f:
+            json.dump(new_contact_list, f, indent= 4)
+
+        # confirms contact list was updated, and prints updated contact list
+        print("Contact list updated!")
+        show_contact_list()
+
+    # updates the matches list with a new email value
+    if user_selection == 3:
+        update_email = get_email()
+
+        # updates the Email field in the matches list to the new email
+        for i in matches:
+            i["Email"] = update_email
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+
+        # used to construct the new contact list, that will overwrite the contacts.json file
+        new_contact_list = []
+
+        # creates the new contact list with the updated email
+        for i in contact_list:
+            if i["Name"] == contact_choice:
+                new_contact_list.extend(matches)
+            else:
+                new_contact_list.append(i)
+
+        # overwrites contacts.json file with the new contact list containing the updated email
+        with open("contacts.json", "w") as f:
+            json.dump(new_contact_list, f, indent=4)
+
+        # confirms contact list was updated, and prints updated contact list
+        print("Contact list updated!")
+        show_contact_list()
+
+    # updates the matches list with the new note
+    if user_selection == 4:
+        update_notes = input("What would you like the new note to be? ")
+
+        # updates the Notes field in the matches list to the new email
+        for i in matches:
+            i["Notes"] = update_notes
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+
+        # used to construct the new contact list, that will overwrite the contacts.json file
+        new_contact_list = []
+
+        # creates the new contact list with the updated note
+        for i in contact_list:
+            if i["Name"] == contact_choice:
+                new_contact_list.extend(matches)
+            else:
+                new_contact_list.append(i)
+
+        # overwrites contacts.json file with the new contact list containing the updated email
+        with open("contacts.json", "w") as f:
+            json.dump(new_contact_list, f, indent=4)
+
+        # confirms contact list was updated, and prints updated contact list
+        print("Contact list updated!")
+        show_contact_list()
+
+    while True:
+        update_again = input("Would you like to update another contact? (y/n) ")
+
+        if update_again.lower() == "y":
+            update_contact()
+            break
+        elif update_again.lower() == "n":
+            print("Exiting update function")
+            break
+        else:
+            print("Please enter 'y' or 'n'" )
+    
 
 
 def show_menu():
@@ -206,7 +348,7 @@ def show_menu():
 6. Exit
 """)
     
-update_contact()
+
     
 
     
