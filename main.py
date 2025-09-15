@@ -168,6 +168,7 @@ def search_contact_list():
     
 
 def update_contact():
+    """Allows users to update a contact's name, phone, email, or notes"""
 
     show_contact_list()
 
@@ -320,6 +321,7 @@ def update_contact():
         print("Contact list updated!")
         show_contact_list()
 
+    # allows users the option to update another contact
     while True:
         update_again = input("Would you like to update another contact? (y/n) ")
 
@@ -332,6 +334,57 @@ def update_contact():
         else:
             print("Please enter 'y' or 'n'" )
     
+
+def delete_contact():
+    show_contact_list()
+
+    while True:
+        contact_choice = input("What contact would you like to delete? ")
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+        
+        # list of potential matches
+        matches = []
+
+        for i in contact_list:  # searches the contact list for any Name value matches, if they match, append to matches
+            if i["Name"] == contact_choice:
+                matches.append(i)
+
+        if matches:     # returns True, if Matches list is not empty, else return false and ask for new valid input
+            break
+        else:
+            print("That name is not in the conact list, please select a valid name ")
+
+    with open("contacts.json", "r") as f:
+        contact_list = json.load(f)
+
+    # constructs new contact list
+    new_contact_list = []
+
+    # appends contacts to the new_contact_list if they are not to be deleted
+    for i in contact_list:
+        if i["Name"] != contact_choice:
+            new_contact_list.append(i)
+
+    with open("contacts.json", "w") as f:
+        json.dump(new_contact_list, f, indent=4)
+
+    print("Contact Deleted!")
+    show_contact_list()
+
+    # allows users the option to delete another contact
+    while True:
+        update_again = input("Would you like to delete another contact? (y/n) ")
+
+        if update_again.lower() == "y":
+            delete_contact()
+            break
+        elif update_again.lower() == "n":
+            print("Exiting delete function")
+            break
+        else:
+            print("Please enter 'y' or 'n'" )
 
 
 def show_menu():
@@ -347,6 +400,8 @@ def show_menu():
 5. Remove Contact
 6. Exit
 """)
+    
+
     
 
     
