@@ -159,13 +159,38 @@ def search_contact_list():
                 if i["Email"] == email_search:
                     matches.append(i)
 
-            if matches: # returns True if matches list is not empty, else returns False
+            if matches: # returns True if matches list is not empty, else returns False and asks for valid input
                 sorted_matches = sorted(matches, key=lambda x: x["Name"])               # sorts matches by Name
                 print(tabulate(sorted_matches, headers="keys", tablefmt="fancy-grid"))  # prints table of sorted matches
                 break
             else:
                 print("That email is not in the contact list, please enter a valid email")
     
+
+def update_contact():
+    while True:
+        contact_choice = input("What contact would you like to update? ")
+
+        with open("contacts.json", "r") as f:
+            contact_list = json.load(f)
+        
+        # list of potential matches
+        matches = []
+
+        for i in contact_list:  # searches the contact list for any Name value matches, if they match, append to matches
+            if i["Name"] == contact_choice:
+                matches.append(i)
+
+        if matches:     # returns True, if Matches list is not empty, else return false and ask for new valid input
+            break
+        else:
+            print("That name is not in the conact list, please select a valid name ")
+
+    
+
+        
+
+
 
 def show_menu():
     """Prints Menu of User Options"""
@@ -181,7 +206,7 @@ def show_menu():
 6. Exit
 """)
     
-
+update_contact()
     
 
     
